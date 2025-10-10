@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Detalhes — FiveM Hack 1</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { font-family: Arial, sans-serif; background: linear-gradient(135deg,#0f0f17,#1b1b2f); color:#fff; margin:0; display:flex; align-items:center; justify-content:center; height:100vh; }
+    .detalhes-container { background:rgba(255,255,255,0.05); padding:2rem; border-radius:12px; text-align:center; max-width:600px; width:90%; box-shadow:0 0 20px rgba(0,0,0,0.6); }
+    img { width:250px; border-radius:10px; margin-bottom:1rem; }
+    h1 { margin-bottom:1rem; color:#b19aff; }
+    p { line-height:1.5; margin-bottom:1rem; }
+    strong { color:#ffd369; }
+    .btn { margin:0.5rem; padding:0.8rem 1.5rem; border:none; border-radius:8px; cursor:pointer; font-size:1rem; transition:0.3s; }
+    .btn-voltar { background:#ff4c4c; color:#fff; }
+    .btn-voltar:hover { background:#e63939; }
+    .btn-comprar { background:#4caf50; color:#fff; }
+    .btn-comprar:hover { background:#3c9e40; }
+</style>
+</head>
+<body>
+  <div class="detalhes-container">
+    <h1>FiveM Hack 1</h1>
+    <img src="fv/fv1.png" alt="FiveM Hack 1">
+    <p>O FiveM Hack 1 é projetado para servidores FiveM. Envio em até <strong>3–5 dias úteis</strong> após confirmação.</p>
+    <p><strong>Preço:</strong> R$20</p>
+    
+    <button class="btn btn-voltar" onclick="window.location.href='index.html'">Voltar à Loja</button>
+  </div>
+
+<!-- Compra handler injection -->
+<script>
+/* compra-handler-injected */
+(function(){
+  function findBuyButtons(){
+    var els = [];
+    var candidates = document.querySelectorAll('button, a, input[type="button"], input[type="submit"]');
+    candidates.forEach(function(el){
+      try{
+        var txt = (el.innerText || el.value || '').trim().toLowerCase();
+        if(txt.indexOf('comprar') !== -1 || txt.indexOf('buy') !== -1){
+          els.push(el);
+        }
+      }catch(e){}
+    });
+    return els;
+  }
+
+  function onBuyClick(e){
+    e.preventDefault();
+    fetch('checkout.html', {method: 'HEAD'}).then(function(resp){
+      if(resp && resp.status < 400){
+        window.location.href = 'checkout.html';
+      }else{
+        var prod = (this.getAttribute && this.getAttribute('data-product')) || 'produto';
+        if(window.confirm('Iniciar compra de ' + prod + '?')){
+          console.log('Compra iniciada para', prod);
+          alert('Compra iniciada para ' + prod + '. (Implementar fluxo de pagamento no servidor)');
+        }
+      }
+    }).catch(function(){
+      if(window.confirm('Iniciar compra?')){
+        console.log('Compra iniciada (offline check)');
+        alert('Compra iniciada. (Implementar fluxo de pagamento no servidor)');
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var els = findBuyButtons();
+    if(els.length===0){
+      document.querySelectorAll('.btn-buy, .buy-btn, .comprar, .btn-comprar').forEach(function(x){ els.push(x); });
+    }
+    els.forEach(function(btn){
+      if(!btn.getAttribute('data-product')){
+        var nameEl = document.querySelector('h1') || document.querySelector('h2') || document.querySelector('.product-name');
+        var pname = nameEl ? (nameEl.innerText||nameEl.textContent||'produto').trim() : 'produto';
+        btn.setAttribute('data-product', pname);
+      }
+      btn.addEventListener('click', onBuyClick);
+      btn.style.cursor = 'pointer';
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

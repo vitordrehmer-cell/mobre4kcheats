@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background: #0d0a12;
+  color: #ddd;
+}
+
+nav {
+  display: flex;
+  background: #2a1a4a;
+  padding: 1rem;
+  gap: 1rem;
+  align-items: center;
+}
+
+nav a {
+  color: #aaa;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  transition: background 0.3s, color 0.3s;
+}
+
+nav a.active,
+nav a:hover {
+  background: #7f5af0;
+  color: #fff;
+}
+
+/* Ícone carrinho no canto direito */
+#cart-icon {
+  margin-left: auto;
+  position: relative;
+  cursor: pointer;
+  font-size: 1.6rem;
+  color: #fff;
+}
+
+#cart-count {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background: red;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 2px 6px;
+}
+
+.tab {
+  display: none;
+  padding: 2rem;
+  max-width: 1100px;
+  margin: 2rem auto;
+}
+
+.tab.active {
+  display: block;
+}
+
+/* Categoria */
+.categoria {
+  margin-bottom: 2.5rem;
+}
+
+.categoria h3 {
+  color: #b19aff;
+  margin-bottom: 1rem;
+}
+
+/* Produtos layout */
+.produtos-container {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.produto {
+  background: #1f1541;
+  border-radius: 12px;
+  padding: 1rem;
+  width: 200px;
+  box-shadow: 0 8px 15px rgba(127, 90, 240, 0.3);
+  text-align: center;
+  transition: transform 0.25s ease;
+}
+
+.produto:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(127, 90, 240, 0.6);
+}
+
+.produto img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  height: 120px;
+  margin-bottom: 0.6rem;
+}
+
+.produto h3 {
+  margin: 0.4rem 0;
+  color: #b19aff;
+  font-size: 1rem;
+}
+
+.produto p {
+  margin: 0.3rem 0 0.8rem;
+  color: #aaa;
+  font-size: 0.95rem;
+}
+
+.btn-comprar, 
+.btn-add, 
+.btn-finalizar {
+  background: #7f5af0;
+  border: none;
+  color: white;
+  font-weight: 700;
+  padding: 0.45rem 0.9rem;
+  border-radius: 24px;
+  cursor: pointer;
+  margin: 0.18rem;
+  transition: background 0.25s;
+  font-size: 0.9rem;
+}
+
+.btn-comprar:hover,
+.btn-add:hover,
+.btn-finalizar:hover {
+  background: #5931db;
+}
+
+/* Sidebar do carrinho */
+#cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 320px;
+  height: 100%;
+  background: #1f1541;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.6);
+  padding: 1rem;
+  transition: right 0.3s ease;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+#cart-sidebar.active {
+  right: 0;
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-header h2 {
+  color: #b19aff;
+  margin: 0;
+}
+
+#close-cart {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #2a1a4a;
+  padding: 0.6rem 0.8rem;
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  color: #fff;
+}
+
+.cart-item span {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.cart-item button {
+  background: #ff4d4d;
+  border: none;
+  color: white;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.cart-item button:hover {
+  background: #cc0000;
+}
+
+#cart-total {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #b19aff;
+  text-align: right;
+}
+
+.btn-finalizar {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+/* Contato */
+.contato-info {
+  background: #1a112d;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-top: 1rem;
+  box-shadow: 0 0 15px rgba(127, 90, 240, 0.2);
+  max-width: 500px;
+}
+
+.contato-info p {
+  font-size: 1rem;
+  margin: 0.8rem 0;
+}
+
+.contato-info a {
+  color: #b19aff;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.contato-info a:hover {
+  color: #ffffff;
+}
+
+/* Responsivo simples */
+@media (max-width: 800px) {
+  .produtos-container { justify-content: center; }
+  .produto { width: 160px; }
+  #cart-sidebar { width: 280px; }
+}
