@@ -353,4 +353,22 @@ nav a:hover {
     padding: 0.2rem 0.5rem;
   }
 }
+/* Corrige tamanho dos produtos no celular */
+@media (max-width: 600px) {
+
+  .produtos-container {
+    justify-content: center;
+  }
+
+  .produto {
+    width: 90% !important;
+    max-width: 260px;
+    margin: auto;
+  }
+
+  .produto img {
+    height: 100px;
+  }
+}
+
 
