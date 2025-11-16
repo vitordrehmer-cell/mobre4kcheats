@@ -252,3 +252,37 @@ nav a:hover {
   .produto { width: 160px; }
   #cart-sidebar { width: 280px; }
 }
+/* Melhor responsividade para celular */
+@media (max-width: 500px) {
+  nav {
+    flex-wrap: wrap;
+  }
+
+  nav a {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .tab {
+    padding: 1.2rem;
+  }
+
+  .produtos-container {
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .produto {
+    width: 100%;
+    max-width: 240px;
+  }
+
+  #cart-sidebar {
+    width: 100%;
+    right: -100%;
+  }
+
+  #cart-sidebar.active {
+    right: 0;
+  }
+}
