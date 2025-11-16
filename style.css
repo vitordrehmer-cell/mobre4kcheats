@@ -271,3 +271,25 @@ nav a:hover {
   }
 
 }
+/* Correção de zoom automático do Safari no iPhone */
+@supports (-webkit-touch-callout: none) {
+  body {
+    font-size: 14px;
+  }
+
+  .produto {
+    max-width: 210px !important;
+    padding: 0.8rem !important;
+  }
+
+  .produto img {
+    height: 85px !important;
+  }
+
+  .btn-add,
+  .btn-comprar {
+    font-size: 0.75rem !important;
+    padding: 0.35rem 0.6rem !important;
+  }
+}
+
